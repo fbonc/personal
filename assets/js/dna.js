@@ -120,8 +120,8 @@
         }
         ctx.stroke();
         };
-        drawStrand(+1, '--dna-strand-a', 'rgba(80,180,255,0.35)');
-        drawStrand(-1, '--dna-strand-b', 'rgba(255,120,180,0.35)');
+        drawStrand(+1, '--dna-strand-a', '#10476E');
+        drawStrand(-1, '--dna-strand-b', '#2a7256ff');
 
         ctx.restore(); // stop clipping — rest of page shows only the background, no helix
 
@@ -131,3 +131,7 @@
 
     requestAnimationFrame(draw);
 })();
+
+
+//   --accent-a:#10476E;
+//   --accent-b: #4AC395;

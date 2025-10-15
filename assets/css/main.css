@@ -12,8 +12,7 @@ img{ border-style:none; }
 
 /* ---- Theme vars (used by hero + overlay) ---- */
 :root{
-  --card-bg: rgba(8,14,22,0.65);
-  --card-blur: 5px;
+  --card-blur: 8px;
   --card-border: rgba(255,255,255,0.12);
   --card-shadow: 0 20px 40px rgba(0,0,0,.35);
 
@@ -21,8 +20,23 @@ img{ border-style:none; }
   --text-body:#c6d2df;
   --text-mute:#aab8c6;
 
-  --accent-a:#6CC3FF;
-  --accent-b:#FF82B2;
+  --accent-a:#22c55e; /* emerald */
+  --accent-b:#06b6d4; /* teal */
+  --bg-deep:#031915;  /* hero/overlay base */
+  --card-bg: rgba(6,24,22,0.68);
+
+  /* DNA */
+  --dna-strand-a: rgba(34,197,94,0.55);
+  --dna-strand-b: rgba(6,182,212,0.50);
+  --dna-rung:     rgba(183,236,210,0.26);
+  --dna-glow:     rgba(12,226,199,0.18);
+}
+
+body.projects-open{
+  --dna-strand-a: rgba(34,197,94,0.65);
+  --dna-strand-b: rgba(6,182,212,0.60);
+  --dna-rung:     rgba(210,248,230,0.32);
+  --dna-glow:     rgba(20,238,205,0.22);
 }
 
 /* ========== Hero (name card) ========== */
@@ -47,6 +61,13 @@ img{ border-style:none; }
   z-index:0;
 }
 
+#dna{ background: var(--bg-deep); }
+#projects-overlay{
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.04)),
+    var(--bg-deep);
+}
+
 /* Name card */
 .header{
   position:absolute; top:50%; left:50%;
@@ -62,7 +83,7 @@ img{ border-style:none; }
   -webkit-backdrop-filter:saturate(130%) blur(var(--card-blur));
 }
 .header .site-title{ color:var(--text-strong); font-weight:900; letter-spacing:1px; }
-.header p a{ color:#fff; background:rgb(47,94,105); text-decoration:none; }
+.header p a{ color:#fff; background:rgba(46, 71, 125, 0.864); text-decoration:none; }
 
 /* divider */
 .header hr{
