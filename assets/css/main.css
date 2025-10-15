@@ -1,221 +1,181 @@
-/* --- base & fonts (only what's used) --- */
+/* ========== Base (used only) ========== */
 @import url(https://fonts.googleapis.com/css?family=Nunito+Sans);
 
-html { line-height: 1.15; -webkit-text-size-adjust: 100%; scroll-behavior: smooth;}
-body {
-    background-color: #ffffff00;
-    margin: 0;
-    padding: 0;
-    font-family: 'Nunito Sans', sans-serif;
-    line-height: 1.5;
-    color: #000000;
-    overflow-x: hidden;
+html{ line-height:1.15; -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+body{
+  margin:0; padding:0; overflow-x:hidden;
+  font-family:'Nunito Sans',sans-serif; line-height:1.5; color:#000;
 }
-h1 { margin: 0em 0; font-size: 2.5rem; }
-a { background-color: transparent; text-decoration: none; }
-hr { box-sizing: content-box; height: 0; overflow: visible; }
-img { border-style: none; }
+h1{ margin:0; font-size:2.5rem; }
+a{ text-decoration:none; background:transparent; }
+img{ border-style:none; }
 
-/* DNA color variables*/
+/* ---- Theme vars (used by hero + overlay) ---- */
 :root{
-  --card-bg: rgba(8,14,22,0.65);      /* translucent navy */
-  --card-blur: 5px;                   /* glass blur */
+  --card-bg: rgba(8,14,22,0.65);
+  --card-blur: 5px;
   --card-border: rgba(255,255,255,0.12);
   --card-shadow: 0 20px 40px rgba(0,0,0,.35);
 
-  --text-strong: #e8eef6;              /* near-white */
-  --text-body:   #c6d2df;              /* muted body */
-  --text-mute:   #aab8c6;
+  --text-strong:#e8eef6;
+  --text-body:#c6d2df;
+  --text-mute:#aab8c6;
 
-  /* pick up the helix colors */
-  --accent-a: #6CC3FF;                 /* strand A */
-  --accent-b: #FF82B2;                 /* strand B */
+  --accent-a:#6CC3FF;
+  --accent-b:#FF82B2;
 }
 
-/* --- hero / particles area --- */
+/* ========== Hero (name card) ========== */
 #dna{
-  display: flex;
-  width: 100%;
-  min-height: 100vh;
-  background: rgb(0,10,18);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  image-rendering: pixelated;
+  display:flex;
+  width:100%;
+  min-height:100vh;
+  background:rgb(0,10,18);
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-attachment:fixed;
+  image-rendering:pixelated;
 }
 
-#dna #dna-bg{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
+/* Canvas is a sibling of #dna, not a child */
+#dna-bg{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:0;
 }
 
-
-
-/* --- header card --- */
+/* Name card */
 .header{
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  width: clamp(300px, 90vw, 550px);
-  padding: 28px 28px 22px;
-  color: var(--text-body);
-  background: linear-gradient(180deg, var(--card-bg), rgba(8, 14, 22, 0.11));
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
-  box-shadow: var(--card-shadow);
-  backdrop-filter: saturate(130%) blur(var(--card-blur));
-  -webkit-backdrop-filter: saturate(130%) blur(var(--card-blur));
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:clamp(300px,90vw,550px);
+  padding:28px 28px 22px;
+  color:var(--text-body);
+  background:linear-gradient(180deg,var(--card-bg),rgba(8,14,22,0.11));
+  border:1px solid var(--card-border);
+  border-radius:14px;
+  box-shadow:var(--card-shadow);
+  backdrop-filter:saturate(130%) blur(var(--card-blur));
+  -webkit-backdrop-filter:saturate(130%) blur(var(--card-blur));
 }
+.header .site-title{ color:var(--text-strong); font-weight:900; letter-spacing:1px; }
+.header p a{ color:#fff; background:rgb(47,94,105); text-decoration:none; }
 
-.header p a {
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  background: rgb(47, 94, 105);
-}
-
-.header .site-title{
-  color: var(--text-strong);
-  font-weight: 900;
-  letter-spacing: 1px;
-}
-
-/* subtle DNA-tinted divider */
+/* divider */
 .header hr{
-  height: 2px;
-  border: 0;
-  margin: 16px 0 12px;
-  background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
-  opacity: .5;
-  border-radius: 2px;
+  height:2px; border:0; margin:16px 0 12px; opacity:.5; border-radius:2px;
+  background:linear-gradient(90deg,var(--accent-a),var(--accent-b));
 }
 
-/* --- header icons and Projects link --- */
+/* Header icons + Projects pill */
 .header-icons{ display:flex; gap:10px; align-items:center; }
-
 .header-icons .icon{
   display:grid; place-items:center;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  color: var(--text-strong);
-  border: 1px solid var(--card-border);
-  background: rgba(255,255,255,0.02);
-  transition: transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  width:36px; height:36px; border-radius:50%;
+  color:var(--text-strong);
+  border:1px solid var(--card-border);
+  background:rgba(255,255,255,0.02);
+  transition:transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+  box-shadow:0 2px 6px rgba(0,0,0,.25);
 }
-
 .header-icons .icon:hover{
-  transform: translateY(-1px);
-  color: #06121a;
-  background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
-  box-shadow: 0 6px 16px rgba(0,0,0,.35);
+  transform:translateY(-1px);
+  color:#06121a;
+  background:linear-gradient(135deg,var(--accent-a),var(--accent-b));
+  box-shadow:0 6px 16px rgba(0,0,0,.35);
 }
-
 .header-icons .projects{
-  margin-left: 6px;
-  padding: 6px 10px;
-  font-size: 15px;
-  color: var(--text-strong);
-  border-radius: 999px;
-  border: 1px solid var(--card-border);
-  background: rgba(255,255,255,0.02);
-  transition: background .2s ease, color .2s ease, border-color .2s ease;
+  margin-left:6px; padding:6px 10px; font-size:15px;
+  color:var(--text-strong);
+  border-radius:999px; border:1px solid var(--card-border);
+  background:rgba(255,255,255,0.02);
+  transition:background .2s ease, color .2s ease, border-color .2s ease;
 }
 .header-icons .projects:hover{
-  color: #06121a;
-  border-color: transparent;
-  background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+  color:#06121a; border-color:transparent;
+  background:linear-gradient(135deg,var(--accent-a),var(--accent-b));
 }
 
-ul {
-  text-align: left;
-}
-
-/* better paragraph contrast inside card */
-#particles-js .header p{ color: var(--text-body); }
-
-/* optional: round icon corners on small screens */
-@media (max-width: 420px){
-  .header{ padding: 22px 18px; }
+/* Slightly tighter padding on very small screens */
+@media (max-width:420px){
+  .header{ padding:22px 18px; }
   .header-icons .icon{ width:34px; height:34px; }
 }
 
-/* down chevron */
-.down{
-  position: absolute;
-  bottom: 25px;
-  width: 100%;
-  margin: 0 auto;
-  display: block;
-  font-size: 30px;
-  cursor: pointer;
-  color: #fff;
-  text-align: center;
+/* ========== Projects Overlay (full-screen) ========== */
+#projects-overlay{
+  position: fixed; inset: 0; z-index: 999; overflow: auto;
+  backdrop-filter: saturate(120%) blur(5px);
+  -webkit-backdrop-filter: saturate(120%) blur(2px);
 }
 
-/* --- projects section --- */
-.user-details{
-    text-align: center;
-    margin: 5px auto;
+#projects-overlay .overlay-inner{
+  width:min(1200px,92vw);
+  margin:26px auto 40px;
+  padding:10px 0 30px;
+  color:var(--text-body);
 }
-#projects{
-  margin-top: 10px;
-  background: #ffffff;
-  padding: 10%;
-  box-shadow: 0 0px 30px rgba(0, 0, 0, 0.506);
-  padding-top: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 90%;
-  max-width: 960px;
-  margin: 0 auto;
+#projects-overlay .overlay-header{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  margin:8px 0 18px;
 }
-.user-projects{ margin: 100px auto; }
-.user-projects img{
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
+#projects-overlay h2{
+  color:var(--text-strong);
+  font-size:clamp(1.4rem,2.2vw,2rem);
+  margin:0;
 }
-
-
-
-
-/* two-column layout on wider screens */
-@media (min-width: 550px){
-  #projects{ width: 80%; }
-  .contents{ margin-left: 0; width: 48%; }
-  .contents, .contents-right{ margin-top: -5%; }
-  .contents-right, .images-right{ float:right; width:48%; }
-  .images-right img{ float:right; }
-  .images-left{ float:left; width:48%; }
-  .images-left img{ float:left; }
+/* Back button styled like the hero Projects pill */
+#projects-overlay .projects{
+  margin-left:6px; padding:6px 10px; font-size:15px;
+  color:var(--text-strong); border-radius:999px;
+  border:1px solid var(--card-border);
+  background:rgba(255,255,255,0.02);
+  transition:background .2s ease, color .2s ease, border-color .2s ease;
+}
+#projects-overlay .projects:hover{
+  color:#06121a; border-color:transparent;
+  background:linear-gradient(135deg,var(--accent-a),var(--accent-b));
 }
 
-/* project button */
-.project-link{
-  display: inline-block;
-  margin: 10px 0;
-  padding: 5px;
-  color: #1488CC;
-  background: transparent;
-  border: 1px solid #1488CC;
-  border-radius: 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: color .3s ease, background-color .3s ease, border-color .3s ease;
+/* 2×2 responsive grid */
+.overlay-grid{ display:grid; gap:22px; grid-template-columns:1fr; }
+@media (min-width:820px){ .overlay-grid{ grid-template-columns:1fr 1fr; } }
+
+/* Cards */
+.overlay-card{
+  display:grid; grid-template-rows:auto auto 1fr auto; gap:10px;
+  padding:16px; border-radius:16px;
+  background:linear-gradient(180deg,var(--card-bg),rgba(8,14,22,0.12));
+  border:1px solid var(--card-border);
+  box-shadow:var(--card-shadow);
+  color:var(--text-body);
 }
-.project-link:hover,
-.project-link:active{
-    background-color: #5347a8;
-    border-color: #5347a8;
-    color: #fff;
+.overlay-media img{ width:100%; height:auto; display:block; border-radius:10px; }
+.overlay-card h3{ margin:2px 0 0; color:var(--text-strong); font-size:1.05rem; }
+.overlay-card ul{ margin:0 0 6px 0; padding-left:18px; }
+.overlay-card li{ margin:4px 0; }
+
+/* GitHub icon button */
+.overlay-card .repo{
+  display:inline-grid; place-items:center;
+  width:36px; height:36px; border-radius:50%;
+  color:var(--text-strong);
+  border:1px solid var(--card-border);
+  background:rgba(255,255,255,0.03);
+  transition:transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+}
+.overlay-card .repo:hover{
+  transform:translateY(-1px);
+  color:#06121a;
+  background:linear-gradient(135deg,var(--accent-a),var(--accent-b));
+  box-shadow:0 6px 16px rgba(0,0,0,.35);
 }
 
-/* --- minimal Font Awesome needed by your <i class="fa ..."> --- */
+/* ========== Minimal Font Awesome used ==========
+   (for the 4 icons referenced in index.html) */
 @font-face{
   font-family:'FontAwesome';
   src:url(../fonts/fontawesome-webfont.woff2?v=4.7.0) format("woff2"),
@@ -223,10 +183,7 @@ ul {
   font-weight:400; font-style:normal;
 }
 .fa{ display:inline-block; font:14px/1 FontAwesome; font-size:inherit; }
-
-/* only the icons you actually use in index.html */
 .fa-linkedin:before{ content:"\f0e1"; }
 .fa-github-alt:before{ content:"\f113"; }
 .fa-file-pdf-o:before{ content:"\f1c1"; }
 .fa-envelope:before{ content:"\f0e0"; }
-.fa-chevron-down:before{ content:"\f078"; }

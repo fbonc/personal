@@ -19,9 +19,9 @@
   </head>
 
   <body>
-    
+    <canvas id="dna-bg" aria-hidden="true"></canvas>
     <div id="dna">
-      <canvas id="dna-bg" aria-hidden="true"></canvas>
+      
       <div class="header">
         <h1>
           <span class="site-title" style="text-align: left">Felipe Bonchristiano</span>
@@ -45,111 +45,92 @@
           <a aria-label="Send Email" href="mailto:felipe.bonchristiano@outlook.com" target="_blank"
             ><i class="icon fa fa-envelope"></i
           ></a>
-          <a aria-label="Projects" href="#projects" data-scroll class="projects"
-            >Projects</a>
+          <a aria-label="Projects" href="#" id="open-projects" class="projects">Projects</a>
         </div>
         
       </div>
-      <a class="down" href="#about" data-scroll><i class="icon fa fa-chevron-down" aria-hidden="true"></i></a>
+    </div>
+
+        <!-- Fullscreen Projects Overlay -->
+    <div id="projects-overlay" aria-hidden="true" hidden>
+      <div class="overlay-inner">
+        <div class="overlay-header">
+          <h2>Featured Projects</h2>
+          <a href="#" id="close-projects" class="projects" aria-label="Back to intro">Back</a>
+        </div>
+
+        <div class="overlay-grid">
+          <!-- Card 1 -->
+          <article class="overlay-card">
+            <div class="overlay-media">
+              <img alt="3D fractal renderer screenshot" src="./assets/img/jpg/fractal.jpg" />
+            </div>
+            <h3>3D Fractal Generator</h3>
+            <ul>
+              <li>SDF ray marching in C++ (sphere tracing & normals).</li>
+              <li>Modular distance estimators & swappable lighting.</li>
+              <li>Optimized loop (BV culling, adaptive steps, early-exit) + live UI.</li>
+            </ul>
+            <a class="repo" target="_blank" href="https://github.com/fbonc/3D-Fractals">
+              <i class="fa fa-github-alt"></i>
+            </a>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="overlay-card">
+            <div class="overlay-media">
+              <img alt="Protein rendering" src="./assets/img/jpg/protein.jpg" />
+            </div>
+            <h3>Protein Function Classification</h3>
+            <ul>
+              <li>FASTA preprocessing; deterministic splits; GO vectors (150k+).</li>
+              <li>CLS embeddings (ESM-2 650M) + self-supervised MLM.</li>
+              <li>MLP + LoRA (Optuna, W&B) → strong balanced-F1 (CAFA-5).</li>
+            </ul>
+            <a class="repo" target="_blank" href="https://github.com/fbonc/protein-function-predictor">
+              <i class="fa fa-github-alt"></i>
+            </a>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="overlay-card">
+            <div class="overlay-media">
+              <img alt="DNA graphic" src="./assets/img/jpg/dna.jpg" />
+            </div>
+            <h3>Genomic Search Engine (ongoing)</h3>
+            <ul>
+              <li>C++ k-mer index (minimizers + FM-index), compressed bitmaps.</li>
+              <li>Memory-mapped, cache-aware search; Bloom/Cuckoo filters.</li>
+              <li>GB-scale benchmarking with golden tests & reproducible runs.</li>
+            </ul>
+            <a class="repo" target="_blank" href="https://github.com/fbonc/k-mer-search-engine">
+              <i class="fa fa-github-alt"></i>
+            </a>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="overlay-card">
+            <div class="overlay-media">
+              <img alt="TradeMap screenshot" src="./assets/img/jpg/trademap.jpeg" />
+            </div>
+            <h3>TradeMap</h3>
+            <ul>
+              <li>Interactive explorer (1993–present) for imports and exports by country.</li>
+              <li>Click any country to reveal top partners and drill down into partner flows and commodity groups.</li>
+              <li>Year scrubber + flow toggles.</li>
+              <li>Build using Leaflet + Mapbox.</li>
+            </ul>
+            <a class="repo" target="_blank" href="https://github.com/fbonc/TradeMap">
+              <i class="fa fa-github-alt"></i>
+            </a>
+          </article>
+        </div>
+      </div>
     </div>
 
 
-    <!-- Projects Section -->
-    <section id="projects">
-      <div class="user-details">
-        <h1>Featured Projects</h1>
-      </div>
-
-      <!-- User Project #1: 3D Fractal Generator -->
-      <div class="user-projects">
-        <div class="images-right">
-          <picture>
-            <source type="image/webp" srcset="./assets/img/webp/fractal.webp" alt="Fractal" />
-            <img alt="Fractal" src="./assets/img/jpg/fractal.jpg" />
-          </picture>
-        </div>
-        <div class="contents" style="text-align: center">
-          <h3>3D Fractal Generator</h3>
-          <p style="text-align: justify">
-            <ul>
-              <li>Implemented signed-distance-field ray marching in C++ with sphere tracing and normal estimation for 3D fractals.</li>
-              <li>Modularized the rendering pipeline: parameterized distance estimators and swappable lighting models at runtime.</li>
-              <li>Optimized render loop (BV culling, adaptive steps, early-exit) and added a UI for real-time fractal tuning.</li>
-            </ul>
-          </p>
-          <a target="_blank" href="https://github.com/fbonc/3D-Fractals">
-            <img height="32" width="32" src="https://unpkg.com/simple-icons@3.4.0/icons/github.svg" />
-          </a>
-        </div>
-      </div>
-
-
-      <!-- User Project #2: ESM-2 Fine-Tuning for Protein Function Classification (Gene Ontology)-->
-      <div class="user-projects">
-        <div class="images-left">
-          <picture>
-            <source type="image/webp" srcset="./assets/img/webp/protein.webp" alt="Protein" />
-            <img alt="Perpetual Crusades" src="./assets/img/jpg/protein.jpg" />
-          </picture>
-        </div>
-        <div class="contents-right" style="text-align: center">
-          <h3>Protein Function Classification (Gene Ontology)</h3>
-            <ul>
-              <li>Built FASTA preprocessing pipeline with deterministic splits and GO vectors for 150k+ proteins.</li>
-              <li>Implemented CLS embedding extraction (ESM-2 650M; PyTorch + Transformers) and self-supervised MLM adaptation.</li>
-              <li>Tuned MLP + LoRA (Optuna, W&B) to strong balanced-F1 across hundreds of CAFA-5 terms.</li>
-            </ul>
-          <a target="_blank" href="https://github.com/fbonc/protein-function-predictor"
-            ><img height="32" width="32" src="https://unpkg.com/simple-icons@3.4.0/icons/github.svg" /></a>
-        </div>
-      </div>
-
-      <!-- User Project #3: Genomic Search Engine -->
-      <div class="user-projects">
-        <div class="images-right">
-          <picture>
-            <source type="image/webp" srcset="./assets/img/webp/dna.webp" alt="DNA" />
-            <img alt="DNA" src="./assets/img/jpg/dna.jpg" />
-          </picture>
-        </div>
-        <div class="contents" style="text-align: center">
-          <h3>Genomic Search Engine (ongoing)</h3>
-          <ul>
-            <li>Building a C++ k-mer index (minimizers + FM-index) with compressed bitmaps for fast presence/count queries.</li>
-            <li>Implementing memory-mapped, cache-aware search with Bloom/Cuckoo filters and a clean CLI.</li>
-            <li>Benchmarking on GB-scale FASTA/FASTQ with golden tests and reproducible runs.</li>
-          </ul>
-          <a target="_blank" href="https://github.com/fbonc/k-mer-search-engine"><img height="32" width="32" src="https://unpkg.com/simple-icons@3.4.0/icons/github.svg" /></a>
-        </div>
-      </div>
-
-
-
-
-      <!-- User Project #4: Trade Map -->
-      <div class="user-projects">
-        <div class="images-left">
-          <picture>
-            <source
-              type="image/webp"
-              srcset="./assets/img/webp/trademap.webp"
-              alt="Trade Map"
-            />
-            <img alt="Trade Map" src="./assets/img/jpg/trademap.jpeg" />
-          </picture>
-        </div>
-        <div class="contents-right" style="text-align: center">
-          <h3>TradeMap</h3>
-          <p style="text-align: left">
-            Webapp for the visualisation of trade (exports and imports) between countries since 1993. The year and import/export mode can be selected through the buttons in the top left, and trade information can be seen by clicking on a country.
-            Built using leaflet.js and the Mapbox API.
-          </p>
-          <a target="_blank" href="https://github.com/fbonc/TradeMap"><img height="32" width="32" src="https://unpkg.com/simple-icons@3.4.0/icons/github.svg" />
-        </div>
-      </div>
-    </section>
-
     <script src="./assets/js/dna.js"></script>
+    <script src="./assets/js/projects.js"></script>
 
   </body>
 </html>

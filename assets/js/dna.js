@@ -4,6 +4,8 @@
     const hero = document.getElementById('dna'); // was 'particles-js'
     if (!canvas || !hero) return;
 
+    const overlayOpen = () => document.body.classList.contains('projects-open');
+
     // ---------- sizing ----------
     let heroH = 0;
     function resize() {
@@ -17,9 +19,7 @@
         canvas.style.height = h + 'px';
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-        // Helix should only draw over the hero area (its actual height)
-        // If your hero is full-viewport, this equals h.
-        heroH = hero.getBoundingClientRect().height || h;
+        heroH = overlayOpen() ? h : (hero.getBoundingClientRect().height || h);
     }
     addEventListener('resize', resize, { passive: true });
     resize();
